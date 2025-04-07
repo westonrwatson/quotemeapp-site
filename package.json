@@ -2,7 +2,7 @@
   "name": "quoteme-landing",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://westonrwatson.github.io/quotemeapp-site",
+  "homepage": "https://quotemeapp.com",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -14,7 +14,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "gh-pages": "^6.1.0"
+    "gh-pages": "^6.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
