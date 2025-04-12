@@ -408,6 +408,10 @@ img {
 
 /* === Mobile Responsive Styles === */
 @media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .hero {
     flex-direction: column-reverse;
     text-align: center;
@@ -423,7 +427,7 @@ img {
   }
 
   .hero-image {
-    width: 90%;
+    transform: scale(0.9);
   }
 
   .phones-stack {
@@ -455,6 +459,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
   }
 
   .privacy-block {
@@ -474,6 +479,17 @@ img {
     width: 90%;
     margin: 2rem 0;
     align-self: center;
+    font-size: 1.1rem !important;
+  }
+
+  .privacy-block h3,
+  .feedback-block h3 {
+    font-size: 1.7rem;
+  }
+
+  .privacy-block a,
+  .feedback-block a {
+    font-size: 1rem;
   }
 
   .feedback-block {

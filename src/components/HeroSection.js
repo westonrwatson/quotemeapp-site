@@ -19,7 +19,7 @@ export default function HeroSection() {
         <h2>QuoteMe</h2>
         <p>Quotes shouldn’t live in forgotten notes. Bring them where you’ll see them — your home screen.</p>
         <a
-          href="https://apps.apple.com/app/idYOUR_APP_ID"
+          href="https://apps.apple.com/us/app/quoteme-pro/id6744032855"
           target="_blank"
           rel="noopener noreferrer"
         >

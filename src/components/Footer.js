@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
     return (
       <div className="footer-box">
@@ -30,7 +32,7 @@ export default function Footer() {
             <div className="footer-column">
               <h5>Download</h5>
               <a
-                href="https://apps.apple.com/app/idYOUR_APP_ID"
+                href="https://apps.apple.com/us/app/quoteme-pro/id6744032855"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -44,13 +46,7 @@ export default function Footer() {
   
             <div className="footer-column">
               <h5>Support</h5>
-              <a
-                href="https://gist.github.com/westonrwatson/db8257adb0ae351057fa9626c5be1400"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Privacy Policy
-              </a>
+              <Link to="/privacy">Privacy Policy</Link>
               <a href="mailto:team.quoteme@gmail.com">Feedback</a>
             </div>
           </div>
