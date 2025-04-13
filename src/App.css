@@ -128,6 +128,23 @@ img {
   }
 }
 
+/* === Privacy Section === */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.privacy-content {
+  flex: 1;
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
 /* === Phones Showcase === */
 .phones-showcase {
   margin: 7rem 0;
@@ -329,13 +346,29 @@ img {
   width: 100%;
 }
 
+.footer-logo,
+.footer-logo a,
+.footer-logo:link,
+.footer-logo:visited {
+  font-family: 'Libre Caslon Text', serif !important;
+  font-size: 1.6rem;
+  color: #000;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* QuoteMe logo styling – shared across mobile and desktop */
 .footer-logo {
   font-family: 'Libre Caslon Text', serif;
   font-size: 1.6rem;
-  margin-top: 1.2rem;
-  margin-bottom: 0.3rem;
+  color: #000;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
 }
 
+/* Desktop layout */
 .footer-column {
   display: flex;
   flex-direction: column;
@@ -358,11 +391,13 @@ img {
   margin-top: 0.5rem;
 }
 
+/* App Store badge */
 .store-badge {
   width: 120px;
   margin-top: 0.4rem;
 }
 
+/* Link underlines */
 .footer-box a[href*="apps.apple.com"]::after {
   content: none;
 }
@@ -391,19 +426,25 @@ img {
   width: 100%;
 }
 
-.footer-mobile-header {
-  display: none;
+.footer-logo::after {
+  content: none !important;
 }
 
+/* Social icons */
 .social-icon {
   width: 24px;
   height: 24px;
   margin-left: 0.75rem;
 }
 
-/* Desktop: reset footer-columns-pair */
+/* Hide mobile header on desktop */
+.footer-mobile-header {
+  display: none;
+}
+
+/* Show columns normally on desktop */
 .footer-columns-pair {
-  display: contents; /* allows grid to treat children normally */
+  display: contents;
 }
 
 /* === Mobile Responsive Styles === */
@@ -415,10 +456,10 @@ img {
   .hero {
     flex-direction: column-reverse;
     text-align: center;
-    gap: 7rem;
+    gap: 3rem;
     height: auto;
     margin-bottom: 7rem;
-    height: 80vh;
+    padding: 3rem 1rem;
   }
 
   .hero-text p {
@@ -427,7 +468,9 @@ img {
   }
 
   .hero-image {
-    transform: scale(0.9);
+    width: 100%;
+    max-width: 400px;
+    height: auto;
   }
 
   .phones-stack {
@@ -508,6 +551,7 @@ img {
     display: none; 
   }
 
+  /* === Footer: MOBILE === */
   .footer-inner {
     display: flex;
     flex-direction: column;
@@ -518,6 +562,17 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 1.6rem;
+    font-family: 'Libre Caslon Text', serif;
+    margin: 0;
+    text-decoration: none;
+  }
+
+  .footer-mobile-header .footer-logo {
+    font-size: 1.6rem;
+    font-family: 'Libre Caslon Text', serif;
+    text-decoration: none;
+    margin: 0;
   }
 
   .footer-social-icons {
@@ -526,7 +581,11 @@ img {
   }
 
   .desktop-only {
-    display: none;
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
   }
 
   .footer-column {
@@ -554,4 +613,8 @@ img {
     justify-content: space-between;
   }
 
+  .footer-social-icons a::after,
+  .footer-social-icons a:hover::after {
+    content: none !important;
+  }
 }
