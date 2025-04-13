@@ -469,8 +469,12 @@ img {
 
   .hero-image {
     width: 100%;
-    max-width: 400px;
+    max-width: 375px;
     height: auto;
+  }
+
+  .down-arrow {
+    display: none !important;
   }
 
   .phones-stack {
