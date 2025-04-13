@@ -10,10 +10,10 @@ export default function Footer() {
           <Link to="/" className="footer-logo">QuoteMe</Link>
           <div className="footer-social-icons">
             <a href="https://www.instagram.com/quoteme.app/" target="_blank" rel="noopener noreferrer">
-              <img src="/icon-instagram.svg" alt="Instagram" className="social-icon" />
+              <img src="/icon-instagram.svg" alt="Instagram" className="social-icon" draggable="false" />
             </a>
             <a href="https://www.facebook.com/profile.php?id=61574947895650" target="_blank" rel="noopener noreferrer">
-              <img src="/icon-facebook.svg" alt="Facebook" className="social-icon" />
+              <img src="/icon-facebook.svg" alt="Facebook" className="social-icon" draggable="false" />
             </a>
           </div>
         </div>
@@ -41,6 +41,7 @@ export default function Footer() {
                 src="/app-store-download.png"
                 alt="Download on the App Store"
                 className="store-badge"
+                draggable="false"
               />
             </a>
           </div>

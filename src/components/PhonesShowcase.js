@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 export default function PhonesShowcase() {
   return (
@@ -7,12 +9,12 @@ export default function PhonesShowcase() {
         <div className="privacy-block">
           <h3>Privacy</h3>
           <p>We don’t collect personal data. No ads, no tracking, no sneaky stuff. Your quotes stay on your device, always.</p>
-          <a href="https://gist.github.com/westonrwatson/db8257adb0ae351057fa9626c5be1400" target="_blank" rel="noopener noreferrer" className="outline-btn yellow">Read Privacy Policy</a>
+          <Link to="/privacy" className="outline-btn yellow">Read Privacy Policy</Link>
         </div>
 
         <div className="phones-stack">
-          <img src="/right-phone.png" alt="Quotes screen" className="phone right" />
-          <img src="/left-phone.png" alt="Add Quote screen" className="phone left" />
+          <img src="/right-phone.png"  alt="Quotes screen" className="phone right" draggable="false"/>
+          <img src="/left-phone.png" alt="Add Quote screen" className="phone left" draggable="false"/>
         </div>
 
         <div className="feedback-block">

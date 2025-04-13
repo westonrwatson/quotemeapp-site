@@ -13,7 +13,7 @@ export default function HeroSection() {
 
   return (
     <section className="hero">
-      <img src="/hero-image.png" alt="QuoteMe on phone" className="hero-image" />
+      <img src="/hero-image.png" alt="QuoteMe on phone" className="hero-image" draggable="false" />
       
       <div className="hero-text">
         <h2>QuoteMe</h2>
@@ -22,16 +22,18 @@ export default function HeroSection() {
           href="https://apps.apple.com/us/app/quoteme-pro/id6744032855"
           target="_blank"
           rel="noopener noreferrer"
+          draggable="false"
         >
           <img
             src="/app-store-download.png"
             alt="Download on the App Store"
             className="store-badge"
+            draggable="false"
           />
         </a>
       </div>
 
-      <div className={`down-arrow ${hideArrow ? 'hidden' : ''}`}>
+      <div className={`down-arrow ${hideArrow ? 'hidden' : ''}`} draggable="false">
          ↓
       </div>
     </section>

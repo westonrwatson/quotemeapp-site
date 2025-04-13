@@ -7,6 +7,10 @@ body {
   overflow-x: hidden;
 }
 
+* {
+  user-select: none;
+}
+
 h1, h2, h3, h4 {
   font-family: 'Libre Caslon Text', serif;
   font-weight: normal;

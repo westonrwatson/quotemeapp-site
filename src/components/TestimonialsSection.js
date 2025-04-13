@@ -39,32 +39,34 @@ export default function TestimonialsSection() {
   useEffect(() => {
     const scroll = scrollRef.current;
     if (!scroll) return;
-  
+
     let isDragging = false;
     let startX = 0;
     let scrollStart = 0;
     let animationId = null;
     let autoScrollPaused = false;
-  
+
+    const SCROLL_SPEED = 0.5;
+
     const autoScroll = () => {
       if (autoScrollPaused) return;
-  
-      scroll.scrollLeft += 0.5;
-  
+
+      scroll.scrollLeft += SCROLL_SPEED;
+
       if (scroll.scrollLeft >= scroll.scrollWidth / 2) {
         scroll.scrollLeft = 0;
       }
-  
+
       animationId = requestAnimationFrame(autoScroll);
     };
-  
+
     const startAutoScroll = () => {
       if (!animationId) {
         autoScrollPaused = false;
         animationId = requestAnimationFrame(autoScroll);
       }
     };
-  
+
     const stopAutoScroll = () => {
       autoScrollPaused = true;
       if (animationId) {
@@ -72,11 +74,8 @@ export default function TestimonialsSection() {
         animationId = null;
       }
     };
-  
-    // Start scrolling initially
-    startAutoScroll();
-  
-    // Drag events
+
+    // Mouse events
     const handleMouseDown = (e) => {
       isDragging = true;
       startX = e.pageX - scroll.offsetLeft;
@@ -84,46 +83,73 @@ export default function TestimonialsSection() {
       scroll.classList.add('grabbing');
       stopAutoScroll();
     };
-  
+
     const handleMouseMove = (e) => {
       if (!isDragging) return;
       const x = e.pageX - scroll.offsetLeft;
       const walk = x - startX;
       scroll.scrollLeft = scrollStart - walk;
     };
-  
-    const endDragging = () => {
+
+    const endMouseDrag = () => {
       if (!isDragging) return;
       isDragging = false;
       scroll.classList.remove('grabbing');
       startAutoScroll();
     };
-  
+
+    // Touch events
+    const handleTouchStart = (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX - scroll.offsetLeft;
+      scrollStart = scroll.scrollLeft;
+      stopAutoScroll();
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isDragging) return;
+      const x = e.touches[0].pageX - scroll.offsetLeft;
+      const walk = x - startX;
+      scroll.scrollLeft = scrollStart - walk;
+    };
+
+    const handleTouchEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      startAutoScroll();
+    };
+
+    // Start initial scroll
+    startAutoScroll();
+
     // Add listeners
     scroll.addEventListener('mousedown', handleMouseDown);
     scroll.addEventListener('mousemove', handleMouseMove);
-    scroll.addEventListener('mouseup', endDragging);
-    scroll.addEventListener('mouseleave', endDragging);
-  
-    // Cleanup
+    scroll.addEventListener('mouseup', endMouseDrag);
+    scroll.addEventListener('mouseleave', endMouseDrag);
+
+    scroll.addEventListener('touchstart', handleTouchStart, { passive: true });
+    scroll.addEventListener('touchmove', handleTouchMove, { passive: true });
+    scroll.addEventListener('touchend', handleTouchEnd);
+
     return () => {
       cancelAnimationFrame(animationId);
       scroll.removeEventListener('mousedown', handleMouseDown);
       scroll.removeEventListener('mousemove', handleMouseMove);
-      scroll.removeEventListener('mouseup', endDragging);
-      scroll.removeEventListener('mouseleave', endDragging);
+      scroll.removeEventListener('mouseup', endMouseDrag);
+      scroll.removeEventListener('mouseleave', endMouseDrag);
+
+      scroll.removeEventListener('touchstart', handleTouchStart);
+      scroll.removeEventListener('touchmove', handleTouchMove);
+      scroll.removeEventListener('touchend', handleTouchEnd);
     };
   }, []);
-   
-
 
   return (
     <section className="testimonials">
       <h3>Testimonials</h3>
-
       <div className="testimonial-scroll" ref={scrollRef}>
         <div className="testimonial-wrapper">
-          {/* Repeat each row twice for looping */}
           {[...Array(2)].map((_, repeatIndex) => (
             <div key={repeatIndex} className="testimonial-rows">
               <div className="testimonial-grid row-top">
