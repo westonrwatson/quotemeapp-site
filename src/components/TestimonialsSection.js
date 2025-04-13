@@ -46,13 +46,10 @@ export default function TestimonialsSection() {
     let animationId = null;
     let autoScrollPaused = false;
 
-    const SCROLL_SPEED = 0.5;
-
     const autoScroll = () => {
       if (autoScrollPaused) return;
 
-      scroll.scrollLeft += SCROLL_SPEED;
-
+      scroll.scrollLeft += 0.5;
       if (scroll.scrollLeft >= scroll.scrollWidth / 2) {
         scroll.scrollLeft = 0;
       }
@@ -75,7 +72,8 @@ export default function TestimonialsSection() {
       }
     };
 
-    // Mouse events
+    startAutoScroll();
+
     const handleMouseDown = (e) => {
       isDragging = true;
       startX = e.pageX - scroll.offsetLeft;
@@ -91,85 +89,54 @@ export default function TestimonialsSection() {
       scroll.scrollLeft = scrollStart - walk;
     };
 
-    const endMouseDrag = () => {
+    const endDragging = () => {
       if (!isDragging) return;
       isDragging = false;
       scroll.classList.remove('grabbing');
       startAutoScroll();
     };
 
-    // Touch events
-    const handleTouchStart = (e) => {
-      isDragging = true;
-      startX = e.touches[0].pageX - scroll.offsetLeft;
-      scrollStart = scroll.scrollLeft;
-      stopAutoScroll();
-    };
-
-    const handleTouchMove = (e) => {
-      if (!isDragging) return;
-      const x = e.touches[0].pageX - scroll.offsetLeft;
-      const walk = x - startX;
-      scroll.scrollLeft = scrollStart - walk;
-    };
-
-    const handleTouchEnd = () => {
-      if (!isDragging) return;
-      isDragging = false;
-      startAutoScroll();
-    };
-
-    // Start initial scroll
-    startAutoScroll();
-
-    // Add listeners
     scroll.addEventListener('mousedown', handleMouseDown);
     scroll.addEventListener('mousemove', handleMouseMove);
-    scroll.addEventListener('mouseup', endMouseDrag);
-    scroll.addEventListener('mouseleave', endMouseDrag);
-
-    scroll.addEventListener('touchstart', handleTouchStart, { passive: true });
-    scroll.addEventListener('touchmove', handleTouchMove, { passive: true });
-    scroll.addEventListener('touchend', handleTouchEnd);
+    scroll.addEventListener('mouseup', endDragging);
+    scroll.addEventListener('mouseleave', endDragging);
 
     return () => {
       cancelAnimationFrame(animationId);
       scroll.removeEventListener('mousedown', handleMouseDown);
       scroll.removeEventListener('mousemove', handleMouseMove);
-      scroll.removeEventListener('mouseup', endMouseDrag);
-      scroll.removeEventListener('mouseleave', endMouseDrag);
-
-      scroll.removeEventListener('touchstart', handleTouchStart);
-      scroll.removeEventListener('touchmove', handleTouchMove);
-      scroll.removeEventListener('touchend', handleTouchEnd);
+      scroll.removeEventListener('mouseup', endDragging);
+      scroll.removeEventListener('mouseleave', endDragging);
     };
   }, []);
 
   return (
     <section className="testimonials">
       <h3>Testimonials</h3>
-      <div className="testimonial-scroll" ref={scrollRef}>
-        <div className="testimonial-wrapper">
-          {[...Array(2)].map((_, repeatIndex) => (
-            <div key={repeatIndex} className="testimonial-rows">
-              <div className="testimonial-grid row-top">
-                {topRow.map((q, i) => (
-                  <div key={`${repeatIndex}-top-${i}`} className={`testimonial ${q.color}`}>
-                    <p>{q.text}</p>
-                    <p className="author">{q.author}</p>
-                  </div>
-                ))}
+      <div className="testimonial-fade-wrapper">
+        <div className="testimonial-scroll" ref={scrollRef}>
+          <div className="testimonial-wrapper">
+            {[...Array(2)].map((_, repeatIndex) => (
+              <div key={repeatIndex} className="testimonial-rows">
+                <div className="testimonial-grid row-top">
+                  {topRow.map((q, i) => (
+                    <div key={`${repeatIndex}-top-${i}`} className={`testimonial ${q.color}`}>
+                      <p>{q.text}</p>
+                      <p className="author">{q.author}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="testimonial-grid row-bottom">
+                  {bottomRow.map((q, i) => (
+                    <div key={`${repeatIndex}-bot-${i}`} className={`testimonial ${q.color}`}>
+                      <p>{q.text}</p>
+                      <p className="author">{q.author}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="testimonial-grid row-bottom">
-                {bottomRow.map((q, i) => (
-                  <div key={`${repeatIndex}-bot-${i}`} className={`testimonial ${q.color}`}>
-                    <p>{q.text}</p>
-                    <p className="author">{q.author}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

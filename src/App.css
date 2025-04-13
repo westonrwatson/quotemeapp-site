@@ -260,7 +260,14 @@ img {
   margin-bottom: 3rem;
 }
 
+/* Fading Edge Wrapper */
+.testimonial-fade-wrapper {
+  position: relative;
+}
+
+/* Scrollable Area */
 .testimonial-scroll {
+  position: relative;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -273,18 +280,43 @@ img {
   display: none;
 }
 
+/* Edge Fades */
+.testimonial-fade-wrapper::before,
+.testimonial-fade-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.testimonial-fade-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f6f6f6, transparent);
+}
+
+.testimonial-fade-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f6f6f6, transparent);
+}
+
+/* Inner Wrapper */
 .testimonial-wrapper {
   display: flex;
   gap: 2rem;
   width: max-content;
 }
 
+/* Rows Stack Vertically */
 .testimonial-rows {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+/* Each Row Lays Out Cards Horizontally */
 .testimonial-grid {
   display: flex;
   gap: 2rem;
@@ -298,6 +330,7 @@ img {
   align-items: flex-start;
 }
 
+/* Individual Testimonial Cards */
 .testimonial {
   padding: 1.2rem 1.5rem;
   border-radius: 12px;
@@ -323,11 +356,13 @@ img {
   text-align: right;
 }
 
+/* Color Variants */
 .testimonial.green { background-color: #8FF080; }
 .testimonial.pink { background-color: #F6A0BD; }
 .testimonial.yellow { background-color: #F7DF59; }
 .testimonial.orange { background-color: #FFA65E; }
 .testimonial.blue { background-color: #6EC1FA; }
+
 
 /* === Footer === */
 .footer-box {
